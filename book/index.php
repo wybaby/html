@@ -1,5 +1,24 @@
+<html>
+    <head>
+        <link rel='shortcut ico' href='book.ico'>
+        <link rel='apple-touch-icon' href='iphone_icon.png'>
+        <title>买没买过</title>
+        <link rel='stylesheet' type='text/css' href='book.css'>
+    </head>
+    <body>
 <?php
 date_default_timezone_set("Asia/Shanghai");
+/*
+echo "<html>" . "\n";
+echo "<head>" . "\n";
+echo "<link href='book.ico' rel='shortcut ico'>" . "\n";
+echo "<link rel='apple-touch-icon' href='iphone_icon.png'>" . "\n";
+echo "<title>买没买过</title>" . "\n";
+echo "<link rel='stylesheet' type='text/css' href='book.css'>" . "\n";
+echo "</head>" . "\n";
+*/
+
+
 $filename = "book.txt";
 $update_time = date("Y-m-d", filemtime($filename));
 $fp = fopen($filename, "r");
@@ -23,7 +42,11 @@ while ( $line = fgets($fp) ) {
         $found_rows[] = $row;
     }
 }
-$status = "更新时间：" . $update_time . "，共 " . $total . " 本";
+$status = "更新时间 " . $update_time . " 共 " . $total . " 本";
+
+echo "<div class='table-b'><table border='0'><tr><td>". $status . "</td></tr></table>" . "\n";
+echo "<input type='text' name='bookname'  id='searched_content' title='书名' />" . "\n";
+echo "<input type='submit' value='Go' class='button' id='search' title='gogogo' />" . "\n";
 
 $tblStr = "";
 if (count($found_rows) > 0) {
@@ -69,3 +92,5 @@ fclose($fp);
 
 
 ?>
+    </body>
+<html>
