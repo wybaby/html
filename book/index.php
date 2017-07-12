@@ -20,7 +20,7 @@ echo "</head>" . "\n";
 
 
 $filename = "book.txt";
-$update_time = date("Y-m-d", filemtime($filename));
+$update_time = date("Y/m/d", filemtime($filename));
 $fp = fopen($filename, "r");
 $last_num = false;
 $current_num = false;
@@ -39,7 +39,7 @@ $status = "更新时间 " . $update_time . " 共 " . $total . " 本";
 ?>
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
             <div class='table-b'><table border='0'><tr><td><?php echo $status;?></td></tr></table></div>
-            <input type='text' name='bookname'  id='searched_content' title='书名' />
+            <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='书名' />
             <input type='submit' name='submit' value='Go' id='search' title='gogogo' />
         </form>
 <?php
