@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "序号" . "</td><td>" . $row[0] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "编号" . "</td><td>" . $row[1] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "书名" . "</td><td>" . $row[3];			
-            if ($row[4].length>0) {
+            if (strlen($row[4])>0) {
                 $tblStr .= (" - " . $row[4]);
             };
             $tblStr .= "</td></tr>" . "\n";
@@ -83,19 +83,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "状态" . "</td><td>" . $row[2] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "出版日期" . "</td><td>" . $row[7] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "购买日期" . "</td><td>" . $row[16] . "</td></tr>" . "\n";
-            if ($row[17].length>0) {
+            if (strlen($row[17])>0) {
                 $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "阅读日期" . "</td><td>" . $row[17] . "</td></tr>" . "\n";
             };
-            if ($row[18].length>0) {
+            if (strlen($row[18])>0) {
                 $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "" . "</td><td>" . $row[18] . "</td></tr>" . "\n";
             };
-            if ($row[19].length>0) {
+            if (strlen($row[19])>0) {
                 $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "打分" . "</td><td>" . $row[19] . "</td></tr>" . "\n";
             };
-            if ($row[20].length>0) {
+            if (strlen($row[20])>0) {
                 $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "简评" . "</td><td>" . $row[20] . "</td></tr>" . "\n";
             };
-            if ($row[21].length>0) {
+            if (strlen($row[21])>0) {
                 $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "江湖地位" . "</td><td>" . $row[21] . "</td></tr>" . "\n";
             };
 
