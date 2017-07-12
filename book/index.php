@@ -4,8 +4,13 @@
         <link rel='apple-touch-icon' href='iphone_icon.png'>
         <title>买没买过</title>
         <link rel='stylesheet' type='text/css' href='book.css'>
+        <script type="text/javascript">
+            function FocusOnInput() {
+                document.getElementById("searched_content").focus();
+            }
+        </script>
     </head>
-    <body>
+    <body onload=FocusOnInput()>
 <?php
 date_default_timezone_set("Asia/Shanghai");
 /*
@@ -39,7 +44,7 @@ $status = "更新时间 " . $update_time . " 共 " . $total . " 本";
 ?>
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
             <div class='table-b'><table border='0'><tr><td><?php echo $status;?></td></tr></table></div>
-            <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='书名' />
+            <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='书名' onfocus="this.select()" onmouseover="this.select()"/>
             <input type='submit' name='submit' value='Go' id='search' title='gogogo' />
         </form>
 <?php
@@ -61,42 +66,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     fclose($fp);
+    $Tab4 = "    ";
+    $Tab8 = $Tab4.$Tab4;
+    $Tab12 = $Tab4.$Tab8;
     if (count($found_rows) > 0) {
         foreach ($found_rows as $row) {
-            $tblStr .= "            <tr><td class='table-x'>" . "序号" . "</td><td>" . $row[0] . "</td></tr>" . "\n";
-            $tblStr .= "            <tr><td class='table-x'>" . "编号" . "</td><td>" . $row[1] . "</td></tr>" . "\n";
-            $tblStr .= "            <tr><td class='table-x'>" . "书名" . "</td><td>" . $row[3];			
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "序号" . "</td><td>" . $row[0] . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "编号" . "</td><td>" . $row[1] . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "书名" . "</td><td>" . $row[3];			
             if ($row[4].length>0) {
                 $tblStr .= (" - " . $row[4]);
             };
             $tblStr .= "</td></tr>" . "\n";
-            $tblStr .= "            <tr><td class='table-x'>" . "作者" . "</td><td>" . $row[5] . "</td></tr>" . "\n";
-            $tblStr .= "            <tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[13] . "'>" . $row[13] . "</a>" . "</td></tr>" . "\n";
-            $tblStr .= "            <tr><td class='table-x'>" . "状态" . "</td><td>" . $row[2] . "</td></tr>" . "\n";
-            $tblStr .= "            <tr><td class='table-x'>" . "出版日期" . "</td><td>" . $row[7] . "</td></tr>" . "\n";
-            $tblStr .= "            <tr><td class='table-x'>" . "购买日期" . "</td><td>" . $row[16] . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "作者" . "</td><td>" . $row[5] . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[13] . "'>" . $row[13] . "</a>" . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "状态" . "</td><td>" . $row[2] . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "出版日期" . "</td><td>" . $row[7] . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "购买日期" . "</td><td>" . $row[16] . "</td></tr>" . "\n";
             if ($row[17].length>0) {
-                $tblStr .= "            <tr><td class='table-x'>" . "阅读日期" . "</td><td>" . $row[17] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "阅读日期" . "</td><td>" . $row[17] . "</td></tr>" . "\n";
             };
             if ($row[18].length>0) {
-                $tblStr .= "            <tr><td class='table-x'>" . "" . "</td><td>" . $row[18] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "" . "</td><td>" . $row[18] . "</td></tr>" . "\n";
             };
             if ($row[19].length>0) {
-                $tblStr .= "            <tr><td class='table-x'>" . "打分" . "</td><td>" . $row[19] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "打分" . "</td><td>" . $row[19] . "</td></tr>" . "\n";
             };
             if ($row[20].length>0) {
-                $tblStr .= "            <tr><td class='table-x'>" . "简评" . "</td><td>" . $row[20] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "简评" . "</td><td>" . $row[20] . "</td></tr>" . "\n";
             };
             if ($row[21].length>0) {
-                $tblStr .= "            <tr><td class='table-x'>" . "江湖地位" . "</td><td>" . $row[21] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "江湖地位" . "</td><td>" . $row[21] . "</td></tr>" . "\n";
             };
 
-            $tblStr .= "            <tr><td>----------</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td>----------</td></tr>" . "\n";
         }
-        $tblStr .= "        </table></div>" . "\n";
-        $tblStr = "        <div class='table-b'><table border='0'>" . "\n" . "            <tr><td>" . "【找到 " . count($found_rows) . " 本 \"". $search_name . "\"】" . "</td></tr>" . "\n" . $tblStr;
+        $tblStr .= $Tab8 . "</table></div>" . "\n";
+        $tblStr = $Tab8 . "<div class='table-b'><table border='0'>" . "\n" . $Tab12 . "<tr><td>" . "【找到 " . count($found_rows) . " 本 \"". $search_name . "\"】" . "</td></tr>" . "\n" . $tblStr;
     } else {
-        $tblStr = "        <div class='table-b'><table><tr></tr><tr><td>没买过 \"" . $search_name . "\" </td></tr></table></div>" . "\n";
+        $tblStr = $Tab8 . "<div class='table-b'><table><tr></tr><tr><td>没买过 \"" . $search_name . "\" </td></tr></table></div>" . "\n";
     }
     echo $tblStr;
 }
