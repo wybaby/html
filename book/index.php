@@ -46,6 +46,7 @@ $status = "更新时间 " . $update_time . " 共 " . $total . " 本";
             <div class='table-b'><table border='0'><tr><td><?php echo $status;?></td></tr></table></div>
             <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='书名' onfocus="this.select()" onmouseover="this.select()"/>
             <input type='submit' name='submit' value='Go' id='search' title='gogogo' />
+            <input type='submit' name='random' value='手气不错' id='random' />
         </form>
 <?php
 /*
@@ -53,17 +54,26 @@ echo "<div class='table-b'><table border='0'><tr><td>". $status . "</td></tr></t
 echo "<input type='text' name='bookname'  id='searched_content' title='书名' />" . "\n";
 echo "<input type='submit' value='Go' class='button' id='search' title='gogogo' />" . "\n";
 */
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     $search_name = trim($_POST["bookname"]);
     $fp = fopen($filename, "r");
     $tblStr = "";
-    while ( $line = fgets($fp) ) {
-        $row = explode(",", $line);
-        $pos = strpos($row[3], $search_name);
-        if ($pos === false) {
-        } else {
-            $found_rows[] = $row;
+    if ($_REQUEST['submit']) {
+        while ( $line = fgets($fp) ) {
+            $row = explode(",", $line);
+            $pos = strpos($row[3], $search_name);
+            if ($pos === false) {
+            } else {
+                $found_rows[] = $row;
+            }
         }
+    } elseif ($_REQUEST['random']) {
+        $r = rand(1, $total);
+        $i = 0;
+        while(++$i <= $r) {
+            $row = explode(",", fgets($fp));
+        }
+        $found_rows[] = $row;
     }
     fclose($fp);
     $Tab4 = "    ";
@@ -102,7 +112,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tblStr .= $Tab12 . "<tr><td>----------</td></tr>" . "\n";
         }
         $tblStr .= $Tab8 . "</table></div>" . "\n";
-        $tblStr = $Tab8 . "<div class='table-b'><table border='0'>" . "\n" . $Tab12 . "<tr><td>" . "【找到 " . count($found_rows) . " 本 \"". $search_name . "\"】" . "</td></tr>" . "\n" . $tblStr;
+        if ($_REQUEST['submit']) {
+            $tblStr = "<tr><td>" . "【找到 " . count($found_rows) . " 本 \"". $search_name . "\"】" . "</td></tr>" . "\n" . $tblStr;
+        } elseif ($_REQUEST['random']) {
+            $tblStr = "<tr><td>【手气不错】</td></tr>" . "\n" . $tblStr;
+        }
+        $tblStr = $Tab8 . "<div class='table-b'><table border='0'>" . "\n" . $Tab12 . $tblStr;
     } else {
         $tblStr = $Tab8 . "<div class='table-b'><table><tr></tr><tr><td>没买过 \"" . $search_name . "\" </td></tr></table></div>" . "\n";
     }
