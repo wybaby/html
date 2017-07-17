@@ -8,7 +8,7 @@
     <?php
     $Tab4 = "    ";
     $seed = 200000;
-    srand(rand(1,$seed));
+    srand(rand(1,time()-$seed*rand(1,50)));
     ?>
     <table border='1' align='center'>
         <tr>
