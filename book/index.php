@@ -81,6 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Tab12 = $Tab4.$Tab8;
     if (count($found_rows) > 0) {
         foreach ($found_rows as $row) {
+            for ($i=0; $i<count($row); ++$i) {
+                $row[$i] = trim($row[$i]);
+            }
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "序号" . "</td><td>" . $row[0] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "编号" . "</td><td>" . $row[1] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "书名" . "</td><td>" . $row[3];			
