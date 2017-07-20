@@ -113,13 +113,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "江湖地位" . "</td><td>" . $row[21] . "</td></tr>" . "\n";
             };
 
-            $tblStr .= $Tab12 . "<tr><td>----------</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td>------------</td></tr>" . "\n";
         }
         $tblStr .= $Tab8 . "</table></div>" . "\n";
         if ($_REQUEST['submit']) {
-            $tblStr = "<tr><td>" . "【找到 " . count($found_rows) . " 本 \"". $search_name . "\"】" . "</td></tr>" . "\n" . $tblStr;
+            $tblStr = "<tr><td colspan=2>" . "【找到 " . count($found_rows) . " 本 \"". $search_name . "\"】" . "</td></tr>" . "\n" . $tblStr;
         } elseif ($_REQUEST['random']) {
-            $tblStr = "<tr><td>【手气不错】</td></tr>" . "\n" . $tblStr;
+            $tblStr = "<tr><td colspan=2>【手气不错】</td></tr>" . "\n" . $tblStr;
         }
         $tblStr = $Tab8 . "<div class='table-b'><table border='0'>" . "\n" . $Tab12 . $tblStr;
     } else {
