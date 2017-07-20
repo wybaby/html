@@ -61,8 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_REQUEST['submit']) {
         while ( $line = fgets($fp) ) {
             $row = explode(",", $line);
-            $pos = strpos($row[3], $search_name);
-            if ($pos === false) {
+            $pos1 = strpos(strtolower($row[3]), strtolower($search_name));
+            $pos2 = strpos(strtolower($row[4]), strtolower($search_name));
+            if ($pos1===false && $pos2===false) {
             } else {
                 $found_rows[] = $row;
             }
