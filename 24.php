@@ -16,7 +16,7 @@ for ($i=0; $i<=3; ++$i) {
 set_time_limit(0);   
 $result = 24;  
 $list = array();  
-//$value=array(9,4,7,7);
+//$value=array(8,9,2,10);
 makeValue($value);   
 $res = "无解";
 if (count($list)>=1) {
@@ -73,8 +73,9 @@ function makeSpecial($set)
     {   
         for($start=0; $start<$size-1; $start+=2)   
         {   
-            if(!($set[$start-1]=="*" || $set[$start-1]=="/" || $set[$start+$len]=="*" || $set[$start+$len]=="/"))   
-                continue;   
+            if ($start>0 && ($start+$len<count($set))) 
+                if(!($set[$start-1]=="*" || $set[$start-1]=="/" || $set[$start+$len]=="*" || $set[$start+$len]=="/"))   
+                    continue;   
             $subSet = array_slice($set, $start, $len);   
             if(!in_array("+", $subSet) && !in_array("-", $subSet))   
                 continue;   
