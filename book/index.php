@@ -68,6 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $found_rows[] = $row;
             }
         }
+        $fpHistory = fopen("history", "a");
+        fwrite($fpHistory, date("H:i:s") . "  " . $_SERVER["REMOTE_ADDR"] . "  " . trim($search_name) . "  " . strval(count($found_rows)) . "  " . $_SERVER['HTTP_USER_AGENT'] . "\n");
+        fclose($fpHistory);
     } elseif ($_REQUEST['random']) {
         $r = rand(1, $total);
         $i = 0;
