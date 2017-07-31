@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         $fpHistory = fopen("history", "a");
-        fwrite($fpHistory, date("H:i:s") . "  " . $_SERVER["REMOTE_ADDR"] . "  " . trim($search_name) . "  " . strval(count($found_rows)) . "  " . $_SERVER['HTTP_USER_AGENT'] . "\n");
+        fwrite($fpHistory, date("Ymd H:i:s") . "  " . $_SERVER["REMOTE_ADDR"] . "  " . trim($search_name) . "  " . strval(count($found_rows)) . "  " . $_SERVER['HTTP_USER_AGENT'] . "\n");
         fclose($fpHistory);
     } elseif ($_REQUEST['random']) {
         $r = rand(1, $total);
@@ -96,25 +96,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             };
             $tblStr .= "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "作者" . "</td><td>" . $row[5] . "</td></tr>" . "\n";
-            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[13] . "'>" . $row[13] . "</a>" . "</td></tr>" . "\n";
+            // 增加column“写作年份”，8+下标全部加1
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[14] . "'>" . $row[14] . "</a>" . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "状态" . "</td><td>" . $row[2] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "出版日期" . "</td><td>" . $row[7] . "</td></tr>" . "\n";
-            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "购买日期" . "</td><td>" . $row[16] . "</td></tr>" . "\n";
-            if (strlen($row[17])>0) {
-                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "阅读日期" . "</td><td>" . $row[17] . "</td></tr>" . "\n";
-            };
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "购买日期" . "</td><td>" . $row[17] . "</td></tr>" . "\n";
             if (strlen($row[18])>0) {
-                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "" . "</td><td>" . $row[18] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "阅读日期" . "</td><td>" . $row[18] . "</td></tr>" . "\n";
             };
             if (strlen($row[19])>0) {
-                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "打分" . "</td><td>" . $row[19] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "" . "</td><td>" . $row[19] . "</td></tr>" . "\n";
             };
             if (strlen($row[20])>0) {
-                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "简评" . "</td><td>" . $row[20] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "打分" . "</td><td>" . $row[20] . "</td></tr>" . "\n";
             };
             if (strlen($row[21])>0) {
-                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "江湖地位" . "</td><td>" . $row[21] . "</td></tr>" . "\n";
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "简评" . "</td><td>" . $row[21] . "</td></tr>" . "\n";
             };
+            if (strlen($row[22])>0) {
+                $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "江湖地位" . "</td><td>" . $row[22] . "</td></tr>" . "\n";
+            };
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "索书号" . "</td><td>" . "<a target='_blank' href='http://innopac.lib.tsinghua.edu.cn/search*chx/c?SEARCH=" . $row[23] . "'>" . $row[23] . "</a>" . "</td></tr>" . "\n";
 
             $tblStr .= $Tab12 . "<tr><td>------------</td></tr>" . "\n";
         }
