@@ -58,12 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_name = trim($_POST["bookname"]);
     $fp = fopen($filename, "r");
     $tblStr = "";
+    $line = fgets($fp); // 抬头一行不参与
     if ($_REQUEST['submit']) {
         while ( $line = fgets($fp) ) {
             $row = explode(",", $line);
-            $pos1 = strpos(strtolower($row[3]), strtolower($search_name));
-            $pos2 = strpos(strtolower($row[4]), strtolower($search_name));
-            if ($pos1===false && $pos2===false) {
+            $pos1 = strpos(strtolower($row[0]), strtolower($search_name));  // 编号
+            $pos2 = strpos(strtolower($row[3]), strtolower($search_name));  // 名称
+            $pos3 = strpos(strtolower($row[4]), strtolower($search_name));  // 副标题
+            if ($pos1===false && $pos2===false && $pos3===false) {
             } else {
                 $found_rows[] = $row;
             }
