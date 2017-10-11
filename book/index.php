@@ -118,7 +118,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (strlen($row[22])>0) {
                 $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "江湖地位" . "</td><td>" . $row[22] . "</td></tr>" . "\n";
             };
-            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "索书号" . "</td><td>" . "<a target='_blank' href='http://innopac.lib.tsinghua.edu.cn/search*chx/c?SEARCH=" . $row[23] . "'>" . $row[23] . "</a>" . "</td></tr>" . "\n";
+            // $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "索书号" . "</td><td>" . "<a target='_blank' href='http://innopac.lib.tsinghua.edu.cn/search*chx/c?SEARCH=" . $row[23] . "'>" . $row[23] . "</a>" . "</td></tr>" . "\n";
+            // 图书馆更新了检索系统，11年来第一次，更新了url
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "索书号" . "</td><td>" . "<a target='_blank' href='https://tsinghua-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains," . $row[23] . "&tab=print_tab&search_scope=print_scope&vid=86THU&lang=zh_CN&offset=0'>" . $row[23] . "</a>" . "</td></tr>" . "\n";
 
             $tblStr .= $Tab12 . "<tr><td>------------</td></tr>" . "\n";
         }
