@@ -44,7 +44,7 @@ $status = "更新时间 " . $update_time . " 共 " . $total . " 本";
 ?>
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
             <div class='table-b'><table border='0'><tr><td><?php echo $status;?></td></tr></table></div>
-            <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='书名' onfocus="this.select()" onmouseover="this.select()"/>
+            <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='序号或标题' onfocus="this.select()" onmouseover="this.select()"/>
             <input type='submit' name='submit' value='Go' id='search' title='gogogo' />
             <input type='submit' name='random' value='手气不错' id='random' />
         </form>
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tblStr .= "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "作者" . "</td><td>" . $row[5] . "</td></tr>" . "\n";
             // 增加column“写作年份”，8+下标全部加1
-            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[14] . "'>" . $row[14] . "</a>" . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a title='豆瓣' target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[14] . "'>" . $row[14] . "</a>" . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "状态" . "</td><td>" . $row[2] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "出版日期" . "</td><td>" . $row[7] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "购买日期" . "</td><td>" . $row[17] . "</td></tr>" . "\n";
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             };
             // $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "索书号" . "</td><td>" . "<a target='_blank' href='http://innopac.lib.tsinghua.edu.cn/search*chx/c?SEARCH=" . $row[23] . "'>" . $row[23] . "</a>" . "</td></tr>" . "\n";
             // 图书馆更新了检索系统，11年来第一次，更新了url
-            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "索书号" . "</td><td>" . "<a target='_blank' href='https://tsinghua-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains," . $row[23] . "&tab=print_tab&search_scope=print_scope&vid=86THU&lang=zh_CN&offset=0'>" . $row[23] . "</a>" . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "索书号" . "</td><td>" . "<a title='清华LIB' target='_blank' href='https://tsinghua-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains," . $row[23] . "&tab=print_tab&search_scope=print_scope&vid=86THU&lang=zh_CN&offset=0'>" . $row[23] . "</a>" . "</td></tr>" . "\n";
 
             $tblStr .= $Tab12 . "<tr><td>------------</td></tr>" . "\n";
         }
