@@ -65,7 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pos1 = strpos(strtolower($row[0]), strtolower($search_name));  // 编号
             $pos2 = strpos(strtolower($row[3]), strtolower($search_name));  // 名称
             $pos3 = strpos(strtolower($row[4]), strtolower($search_name));  // 副标题
-            if ($pos1===false && $pos2===false && $pos3===false) {
+            $pos4 = strpos(strtolower($row[5]), strtolower($search_name));  // 作者
+            if ($pos1===false && $pos2===false && $pos3===false && $pos4===false) {
             } else {
                 $found_rows[] = $row;
             }
