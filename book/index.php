@@ -93,10 +93,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "序号" . "</td><td>" . $row[0] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "编号" . "</td><td>" . $row[1] . "</td></tr>" . "\n";
-            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "书名" . "</td><td>" . $row[3];			
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "书名" . "</td><td>" . $row[3];
             if (strlen($row[4])>0) {
                 $tblStr .= (" - " . $row[4]);
             };
+            if (strpos($row[16],"电子书")===false) {
+            } else {$tblStr .= " (电子书)";}
             $tblStr .= "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "作者" . "</td><td>" . $row[5] . "</td></tr>" . "\n";
             // 增加column“写作年份”，8+下标全部加1
