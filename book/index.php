@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // 增加column“写作年份”，8+下标全部加1
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a title='豆瓣' target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[14] . "'>" . $row[14] . "</a>" . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "状态" . "</td><td>" . $row[2] . "</td></tr>" . "\n";
-            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "出版日期" . "</td><td>" . $row[7] . "</td></tr>" . "\n";
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "出版日期" . "</td><td>" . $row[7] . " (" . $row[8] . "年) </td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "购买日期" . "</td><td>" . $row[17] . "</td></tr>" . "\n";
             if (strlen($row[18])>0) {
                 $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "阅读日期" . "</td><td>" . $row[18] . "</td></tr>" . "\n";
