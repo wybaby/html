@@ -102,7 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tblStr .= "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "作者" . "</td><td>" . $row[5] . "</td></tr>" . "\n";
             // 增加column“写作年份”，8+下标全部加1
-            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a title='豆瓣' target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[14] . "'>" . $row[14] . "</a>" . "</td></tr>" . "\n";
+            // $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a title='豆瓣' target='_blank' href='https://book.douban.com/subject_search?search_text=" . $row[14] . "'>" . $row[14] . "</a>" . "</td></tr>" . "\n";
+            // 豆瓣直接改为isbn跳到书的页面
+            $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "ISBN" . "</td><td>" . "<a title='豆瓣' target='_blank' href='https://book.douban.com/isbn/" . $row[14] . "'>" . $row[14] . "</a>" . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "状态" . "</td><td>" . $row[2] . "</td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "出版日期" . "</td><td>" . $row[7] . " (" . $row[8] . "年) </td></tr>" . "\n";
             $tblStr .= $Tab12 . "<tr><td class='table-x'>" . "购买日期" . "</td><td>" . $row[17] . "</td></tr>" . "\n";
