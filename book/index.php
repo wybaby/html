@@ -30,6 +30,7 @@ $fp = fopen($filename, "r");
 $last_num = false;
 $current_num = false;
 $total = 0;
+$no_read = 0;
 //$found_rows[];
 while ( $line = fgets($fp) ) {
     $row = explode(",", $line);
@@ -37,14 +38,17 @@ while ( $line = fgets($fp) ) {
     $current_num = is_numeric($row[0]);
     if ($current_num && $last_num) {
         $total = intval($row[0]);
+        if ((strval($row[2]) != "未读") && (strval($row[2]) != "阅读中")) {
+            $no_read+=1;
+        }
     }
 }
 fclose($fp);
-$status = "更新时间 " . $update_time . " 共 " . $total . " 本";
+$status = "更新时间 " . $update_time . " 共 " . $total . " 本 已读 ". $no_read . " 本 (" . round($no_read/$total*100, 1) . "%)";
 ?>
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
             <div class='table-b'><table border='0'><tr><td><?php echo $status;?></td></tr></table></div>
-            <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='序号或标题' onfocus="this.select()" onmouseover="this.select()"/>
+            <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='序号、书名或作者' onfocus="this.select()" onmouseover="this.select()"/>
             <input type='submit' name='submit' value='Go' id='search' title='gogogo' />
             <input type='submit' name='random' value='手气不错' id='random' />
         </form>
