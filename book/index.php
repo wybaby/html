@@ -25,7 +25,7 @@ echo "</head>" . "\n";
 
 
 $filename = "book.txt";
-$update_time = date("Y/m/d", filemtime($filename));
+$update_time = date("Y/m/d H:i", filemtime($filename));
 $fp = fopen($filename, "r");
 $last_num = false;
 $current_num = false;
