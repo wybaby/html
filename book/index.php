@@ -50,7 +50,7 @@ $status = "更新时间 " . $update_time . " 共 " . $total . " 本 已读 ". $n
             <div class='table-b'><table border='0'><tr><td><?php echo $status;?></td></tr></table></div>
             <input type='text' name='bookname' value='<?php if(isset($_POST['bookname'])){echo trim($_POST['bookname']);} ?>' id='searched_content' title='序号、书名或作者' onfocus="this.select()" onmouseover="this.select()"/>
             <input type='submit' name='submit' value='Go' id='search' title='gogogo' />
-            <input type='submit' name='random' value='手气不错' id='random' />
+            <input type='submit' name='random' value='偶遇' id='random' />
         </form>
 <?php
 /*
