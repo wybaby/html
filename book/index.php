@@ -60,7 +60,7 @@ echo "<input type='submit' value='Go' class='button' id='search' title='gogogo' 
 */
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     $search_name = trim($_POST["bookname"]);
-    if (strlen($search_name) < 1) exit;
+    if (strlen($search_name) < 1 && $_REQUEST['submit']) exit;
     $fp = fopen($filename, "r");
     $tblStr = "";
     $line = fgets($fp); // 抬头一行不参与
