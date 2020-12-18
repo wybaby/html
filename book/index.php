@@ -147,5 +147,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $tblStr;
 }
 ?>
+        <div style="position: relative">
+            <p style="position: fixed; bottom: 0; width:100%; text-align: center; font-size: 6px">
+            京ICP备2020046849
+            </p>
+</div>
     </body>
 <html>
